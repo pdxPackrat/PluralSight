@@ -110,5 +110,19 @@ namespace equality_unittests
 
             Assert.AreEqual(false, result);  // I would expect in this case that banana and banana2 are two separate instances of a string
         }
+
+        [TestMethod]
+        public void TestIntIEquatable()
+        {
+            int three = 3;
+            int threeAgain = 3;
+            int four = 4;
+
+            bool result = (three.Equals(threeAgain)); // expected to be TRUE
+            bool result2 = (three.Equals(four));  // expected to be FALSE
+
+            Assert.AreEqual(true, result);
+            Assert.AreEqual(false, result2);
+        }
     }
 }
