@@ -98,7 +98,17 @@ namespace equality_unittests
             bool result = banana.Equals(banana2); // We WANT this to be TRUE
 
             Assert.AreEqual(true, result);
+        }
 
+        [TestMethod]
+        public void TestReferenceEqualsOnString()
+        {
+            string banana = "banana";
+            string banana2 = string.Copy(banana);
+
+            bool result = (ReferenceEquals(banana, banana2));
+
+            Assert.AreEqual(false, result);  // I would expect in this case that banana and banana2 are two separate instances of a string
         }
     }
 }
