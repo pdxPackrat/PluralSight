@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
+using equality;
 
 
 namespace equality_unittests
@@ -73,6 +74,30 @@ namespace equality_unittests
             bool result = (x + y == 6f);
 
             Assert.AreEqual(false, result); // you would expect it to be TRUE but it is FALSE 
+
+        }
+
+        [TestMethod]
+        public void TestBoxing()
+        {
+            int i = 123;
+            // the following line boxes i.
+            object o = i;
+            o = 123;
+            i = (int)o;  // unboxing
+
+            Assert.AreEqual(123, i); // checking if this behaves as expected 
+        }
+
+        [TestMethod]
+        public void TestFoodClassEquality()
+        {
+            Food banana = new Food("banana");
+            Food banana2 = new Food("banana");
+
+            bool result = banana.Equals(banana2); // We WANT this to be TRUE
+
+            Assert.AreEqual(true, result);
 
         }
     }
