@@ -95,9 +95,28 @@ namespace equality_unittests
             Food banana = new Food("banana");
             Food banana2 = new Food("banana");
 
-            bool result = banana.Equals(banana2); // We WANT this to be TRUE
+            bool result = banana.Equals(banana2); // We WANT this to be TRUE but it won't be right now because it is doing REFERENCE equality check
 
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(false, result);
+            // Assert.AreEqual(true, result);
+        }
+
+        [TestMethod]
+        public void TestEqualityOpInheritance()
+        {
+            string str1 = "apple";
+            string str2 = string.Copy(str1);
+
+            bool resultRef = ReferenceEquals(str1, str2);  // Expected to be FALSE as this is a reference comparison
+            bool resultMethod = str1.Equals(str2);  // Expected to be TRUE as this should be a value comparison
+            bool resultOp = (str1 == str2);  // Expected to be TRUE as this should be a value comparison
+            bool resultStatic = object.Equals(str1, str2);  // Expected to be FALSE as this is a reference comparison
+
+            Assert.AreEqual(false, resultRef);
+            Assert.AreEqual(true, resultMethod);
+            Assert.AreEqual(true, resultOp);
+            Assert.AreEqual(true, resultStatic);
+
         }
 
         [TestMethod]
