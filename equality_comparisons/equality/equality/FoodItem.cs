@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace equality
+namespace equality.Struct
 {
-    public enum FoodGroup { Meat, Fruit, Vegetables, Sweets, Other }
+    public enum FoodType { Meat, Fruit, Vegetables, Sweets, Other }
 
     public struct FoodItem : IEquatable<FoodItem>
     {
@@ -39,12 +39,12 @@ namespace equality
         }
 
         private readonly string _name;
-        private readonly FoodGroup _group;
+        private readonly FoodType _group;
 
         public string Name { get { return _name; } }
-        public FoodGroup Group { get { return _group; } }
+        public FoodType Group { get { return _group; } }
 
-        public FoodItem(string name, FoodGroup group)
+        public FoodItem(string name, FoodType group)
         {
             this._name = name;
             this._group = group;
@@ -53,7 +53,7 @@ namespace equality
         public FoodItem(string name)
         {
             this._name = name;
-            this._group = FoodGroup.Other;
+            this._group = FoodType.Other;
         }
 
         public override string ToString()

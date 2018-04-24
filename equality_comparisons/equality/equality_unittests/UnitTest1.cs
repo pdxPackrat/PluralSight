@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Forms;
-using equality;
+using equality.Struct;
+using equality.Classes;
 
 
 namespace equality_unittests
@@ -150,9 +151,9 @@ namespace equality_unittests
         [TestMethod]
         public void TestOperatorOverload()
         {
-            FoodItem banana = new FoodItem("banana", FoodGroup.Fruit);
-            FoodItem banana2 = new FoodItem("banana", FoodGroup.Fruit);
-            FoodItem chocolate = new FoodItem("chocolate", FoodGroup.Sweets);
+            FoodItem banana = new FoodItem("banana", FoodType.Fruit);
+            FoodItem banana2 = new FoodItem("banana", FoodType.Fruit);
+            FoodItem chocolate = new FoodItem("chocolate", FoodType.Sweets);
 
             bool result1 = (banana == banana2);  // expect result to be TRUE
             Assert.AreEqual(true, result1);  // expect result to be TRUE
@@ -167,9 +168,9 @@ namespace equality_unittests
         [TestMethod]
         public void TestFoodItemEqualsMethod()
         {
-            FoodItem banana = new FoodItem("banana", FoodGroup.Fruit);
-            FoodItem banana2 = new FoodItem("banana", FoodGroup.Fruit);
-            FoodItem chocolate = new FoodItem("chocolate", FoodGroup.Sweets);
+            FoodItem banana = new FoodItem("banana", FoodType.Fruit);
+            FoodItem banana2 = new FoodItem("banana", FoodType.Fruit);
+            FoodItem chocolate = new FoodItem("chocolate", FoodType.Sweets);
 
             bool result1 = banana.Equals(banana2);  // expect result to be TRUE
             Assert.AreEqual(true, result1);  // expect result to be TRUE
