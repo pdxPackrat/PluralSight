@@ -12,11 +12,15 @@ namespace equality_unittests
         [TestMethod]
         public void CompareButtonObjects()
         {
-            Button button1 = new Button();
-            button1.Text = "Click me now!";
+            Button button1 = new Button
+            {
+                Text = "Click me now!"
+            };
 
-            Button button2 = new Button();
-            button2.Text = "Click me now!";
+            Button button2 = new Button
+            {
+                Text = "Click me now!"
+            };
 
             bool result = (button1 == button2); // we expect this to be FALSE because this is a reference-type object we are comparing
 
@@ -92,13 +96,12 @@ namespace equality_unittests
         [TestMethod]
         public void TestFoodClassEquality()
         {
-            Food banana = new Food("banana");
-            Food banana2 = new Food("banana");
+            FoodItem banana = new FoodItem("banana");
+            FoodItem banana2 = new FoodItem("banana");
 
-            bool result = banana.Equals(banana2); // We WANT this to be TRUE but it won't be right now because it is doing REFERENCE equality check
+            bool result = banana.Equals(banana2); //  with the changes to the equality override we can now prove that the two are equal
 
-            Assert.AreEqual(false, result);
-            // Assert.AreEqual(true, result);
+            Assert.AreEqual(true, result);
         }
 
         [TestMethod]
@@ -142,6 +145,40 @@ namespace equality_unittests
 
             Assert.AreEqual(true, result);
             Assert.AreEqual(false, result2);
+        }
+
+        [TestMethod]
+        public void TestOperatorOverload()
+        {
+            FoodItem banana = new FoodItem("banana", FoodGroup.Fruit);
+            FoodItem banana2 = new FoodItem("banana", FoodGroup.Fruit);
+            FoodItem chocolate = new FoodItem("chocolate", FoodGroup.Sweets);
+
+            bool result1 = (banana == banana2);  // expect result to be TRUE
+            Assert.AreEqual(true, result1);  // expect result to be TRUE
+
+            bool result2 = (banana2 == chocolate); // expect result to be FALSE
+            Assert.AreEqual(false, result2);  // expect result to be FALSE
+            
+            bool result3 = (banana == chocolate); // expect result to be FALSE
+            Assert.AreEqual(false, result3);  // expect result to be FALSE
+        }
+
+        [TestMethod]
+        public void TestFoodItemEqualsMethod()
+        {
+            FoodItem banana = new FoodItem("banana", FoodGroup.Fruit);
+            FoodItem banana2 = new FoodItem("banana", FoodGroup.Fruit);
+            FoodItem chocolate = new FoodItem("chocolate", FoodGroup.Sweets);
+
+            bool result1 = banana.Equals(banana2);  // expect result to be TRUE
+            Assert.AreEqual(true, result1);  // expect result to be TRUE
+
+            bool result2 = banana2.Equals(chocolate); // expect result to be FALSE
+            Assert.AreEqual(false, result2);  // expect result to be FALSE
+
+            bool result3 = chocolate.Equals(banana); // expect result to be FALSE
+            Assert.AreEqual(false, result3);  // expect result to be FALSE
         }
     }
 }

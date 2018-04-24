@@ -6,15 +6,54 @@ using System.Threading.Tasks;
 
 namespace equality
 {
-    public class Food
+    public enum FoodGroup { Meat, Fruit, Vegetables, Sweets, Other }
+
+    public struct FoodItem : IEquatable<FoodItem>
     {
-        private string _name;
+        public static bool operator ==(FoodItem lhs, FoodItem rhs)
+        {
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(FoodItem lhs, FoodItem rhs)
+        {
+            return !lhs.Equals(rhs);
+        }
+
+        public override int GetHashCode()
+        {
+            return _name.GetHashCode() ^ _group.GetHashCode();
+        }
+
+        public bool Equals(FoodItem other)
+        {
+            return this._name == other.Name && this._group == other._group;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is FoodItem)
+                return Equals((FoodItem)obj);
+            else
+                return false;
+        }
+
+        private readonly string _name;
+        private readonly FoodGroup _group;
 
         public string Name { get { return _name; } }
+        public FoodGroup Group { get { return _group; } }
 
-        public Food(string name)
+        public FoodItem(string name, FoodGroup group)
         {
             this._name = name;
+            this._group = group;
+        }
+
+        public FoodItem(string name)
+        {
+            this._name = name;
+            this._group = FoodGroup.Other;
         }
 
         public override string ToString()

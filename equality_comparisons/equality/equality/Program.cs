@@ -10,9 +10,9 @@ namespace equality
     {
         static void Main(string[] args)
         {
-            Food banana = new Food("banana");
-            Food banana2 = new Food("banana");
-            Food chocolate = new Food("chocolate");
+            FoodItem banana = new FoodItem("banana");
+            FoodItem banana2 = new FoodItem("banana");
+            FoodItem chocolate = new FoodItem("chocolate");
 
             Console.WriteLine(banana.Equals(chocolate));
             Console.WriteLine(banana.Equals(banana2)); // Comparing a class is evaluating REFERENCE equality, not VALUE equality
