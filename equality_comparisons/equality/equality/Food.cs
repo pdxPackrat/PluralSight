@@ -14,6 +14,7 @@ namespace equality.Classes
         public static bool operator ==(Food x, Food y)
         {
             return object.Equals(x, y);
+            // return x._name == y._name && x._group == y._group;   // if you do this it will break the derived class equality operator overload
         }
 
         public static bool operator !=(Food x, Food y)

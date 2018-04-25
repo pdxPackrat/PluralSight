@@ -181,5 +181,27 @@ namespace equality_unittests
             bool result3 = chocolate.Equals(banana); // expect result to be FALSE
             Assert.AreEqual(false, result3);  // expect result to be FALSE
         }
+
+        [TestMethod]
+        public void TestFoodEqualityAgainstCookedFood()
+        {
+            Food apple = new Food("apple", FoodGroup.Fruit);
+            CookedFood stewedApple = new CookedFood("stewed", "apple", FoodGroup.Fruit);
+            CookedFood bakedApple = new CookedFood("baked", "apple", FoodGroup.Fruit);
+            CookedFood stewedApple2 = new CookedFood("stewed", "apple", FoodGroup.Fruit);
+            Food apple2 = new Food("apple", FoodGroup.Fruit);
+
+            bool result1 = ((Food)apple == (Food)stewedApple);  // false
+            bool result2 = ((Food)stewedApple == (Food)bakedApple); // false
+            bool result3 = ((Food)stewedApple == (Food)stewedApple2);  // true
+            bool result4 = ((Food)apple == (Food)apple2);  // true
+            bool result5 = ((Food)apple == (Food)apple);  // true
+
+            Assert.AreEqual(false, result1);
+            Assert.AreEqual(false, result2);
+            Assert.AreEqual(true, result3);
+            Assert.AreEqual(true, result4);
+            Assert.AreEqual(true, result5);
+        }
     }
 }
