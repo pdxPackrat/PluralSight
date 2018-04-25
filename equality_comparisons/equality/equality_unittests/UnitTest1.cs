@@ -195,7 +195,9 @@ namespace equality_unittests
             bool result2 = ((Food)stewedApple == (Food)bakedApple); // false
             bool result3 = ((Food)stewedApple == (Food)stewedApple2);  // true
             bool result4 = ((Food)apple == (Food)apple2);  // true
+#pragma warning disable CS1718 // Comparison made to same variable
             bool result5 = ((Food)apple == (Food)apple);  // true
+#pragma warning restore CS1718 // Comparison made to same variable
 
             Assert.AreEqual(false, result1);
             Assert.AreEqual(false, result2);

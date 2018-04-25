@@ -12,6 +12,7 @@ namespace equality
     {
         static void Main(string[] args)
         {
+            /* 
             FoodItem banana = new FoodItem("banana");
             FoodItem banana2 = new FoodItem("banana");
             FoodItem chocolate = new FoodItem("chocolate");
@@ -36,7 +37,16 @@ namespace equality
             DisplayWhetherEqual(stewedApple, stewedApple2);
             DisplayWhetherEqual(apple, apple2);
             DisplayWhetherEqual(apple, apple);
-            
+            */
+
+            string apple = "apple";
+            string pear = "pear";
+
+            DisplayOrder(apple, pear);
+            DisplayOrder(pear, apple);
+            DisplayOrder(apple, apple);
+            DisplayOrder(1, 3);
+            DisplayOrder(5.5d, 4.5d);
         }
 
         static void DisplayWhetherEqual(Food food1, Food food2)
@@ -45,6 +55,18 @@ namespace equality
                 Console.WriteLine(string.Format("{0,12} == {1}", food1, food2));
             else
                 Console.WriteLine(string.Format("{0,12} != {1}", food1, food2));
+        }
+
+        static void DisplayOrder<T>(T x, T y) where T: IComparable<T>
+        {
+            int result = x.CompareTo(y);
+
+            if (result == 0) // equal to
+                Console.WriteLine("{0,12} = {1}", x, y);
+            else if (result > 0) // greater than
+                Console.WriteLine("{0,12} > {1}", x, y);
+            else
+                Console.WriteLine("{0,12} < {1}", x, y);
         }
     }
 }
