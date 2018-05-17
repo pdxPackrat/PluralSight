@@ -11,6 +11,8 @@ namespace Pluralsight.CSharpEquality.Strings.CompareStringsDemo
 	{
 		static void Main(string[] args)
 		{
+
+            string.Compare("apple", "pear", StringComparison.)
 			Console.WriteLine("Current culture is " + Thread.CurrentThread.CurrentCulture);
 
 			// uncomment different pairs of strings to see the results
